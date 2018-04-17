@@ -4,23 +4,21 @@ from requests.auth import HTTPBasicAuth
 from sharepoint import SharePointSite, basic_auth_opener
 
 #Version Basic
-server_url = "https://axiomesolution.sharepoint.com/"
-site_url = server_url + "sites/IUTTeam/SitePages/Test-Site-pour-Bot.aspx"
+site_url = "http://172.28.1.98"
 
-USERNAME = "collaborateur Externe"
+USERNAME = "loca\maxime"
 
-PASSWORD = "partenR@xiome"
+PASSWORD =  base64.b64decode("c3VyZnJpZGVyNzQxMjU4OTYz")
 
-#from sharepoint import SharePointSite, basic_auth_opener
-#opener = basic_auth_opener(server_url, USERNAME, PASSWORD)
+from sharepoint import SharePointSite, basic_auth_opener
+opener = basic_auth_opener(site_url, USERNAME, PASSWORD)
 
-#site = SharePointSite(site_url, opener)
+site = SharePointSite(site_url, opener)
 
+for sp_list in site.lists:
+  print (sp_list.id, sp_list.meta['TITLE'])
 
-#print (site.lists)
-base64.b64decode("c3VyZnJpZGVyNzQxMjU4OTYz")
-
-response = requests.get("http://172.28.1.98", auth=HTTPBasicAuth("loca\maxime", base64.b64decode("c3VyZnJpZGVyNzQxMjU4OTYz")))
+response = requests.get(site_url, auth=HTTPBasicAuth(USERNAME, PASSWORD))
 
 print (response.status_code)
 
