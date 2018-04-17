@@ -18,7 +18,6 @@ PASSWORD = "partenR@xiome"
 
 
 #print (site.lists)
-base64.b64decode("c3VyZnJpZGVyNzQxMjU4OTYz")
 
 response = requests.get("http://172.28.1.98", auth=HTTPBasicAuth("loca\maxime", PASSWORD))
 
